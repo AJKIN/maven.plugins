@@ -1,0 +1,64 @@
+<!--
+*************************************************************************
+* Copyright (c) 2014 - 2014 Dr David H. Akehurst.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* and is available at http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+* 
+*************************************************************************
+-->
+
+<component-set>
+
+	<components>
+
+		<component>
+			<role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+			<role-hint>uar</role-hint>
+			<implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
+			</implementation>
+			<configuration>
+				<phases>
+					<initialize>net.akehurst.maven.plugins:eclipse-uml-maven-plugin:initialize</initialize>
+					<prepare-package>net.akehurst.maven.plugins:eclipse-uml-maven-plugin:prepare-package</prepare-package>
+					<package>net.akehurst.maven.plugins:eclipse-uml-maven-plugin:uar</package>
+					<install>org.apache.maven.plugins:maven-install-plugin:install</install>
+					<deploy>org.apache.maven.plugins:maven-deploy-plugin:deploy</deploy>
+				</phases>
+			</configuration>
+		</component>
+
+		<component>
+			<role>org.apache.maven.artifact.handler.ArtifactHandler</role>
+			<role-hint>uar</role-hint>
+			<implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
+			<configuration>
+				<type>uar</type>
+				<extension>uar</extension>
+				<packaging>uar</packaging>
+				<language>uml</language>
+				<addedToClasspath>true</addedToClasspath>
+				<includesDependencies>false</includesDependencies>
+			</configuration>
+		</component>
+ <!--
+		<component>
+			<role>org.codehaus.plexus.archiver.Archiver</role>
+			<role-hint>uar</role-hint>
+			<implementation></implementation>
+			<instantiation-strategy>per-lookup</instantiation-strategy>
+		</component>
+
+		<component>
+			<role>org.codehaus.plexus.archiver.UnArchiver</role>
+			<role-hint>uar</role-hint>
+			<implementation></implementation>
+			<instantiation-strategy>per-lookup</instantiation-strategy>
+		</component>
+ -->
+
+	</components>
+
+</component-set>
